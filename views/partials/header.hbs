@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimalist Mail Sender Form</title>
+  <style>
+    /* Reset styles */
+    * {
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Black and White Background */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #111, #333);
+      position: relative;
+      color: #fff;
+      margin: 0;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    /* Logo styling */
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ecf0f1;
+      text-transform: uppercase;
+    }
+
+    /* Navbar menu styling */
+    .navbar ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .navbar ul li {
+      margin: 0 20px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .navbar ul li a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #ecf0f1;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar ul li a:hover {
+      color: #ecf0f1;
+      font-size: 1.4rem;
+      /* Slightly enlarge on hover */
+    }
+
+    .navbar ul li a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    /* Mobile Navbar */
+    .navbar .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 2rem;
+      color: white;
+    }
+
+    /* Media Query for Mobile View */
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .navbar ul li {
+        margin: 10px 0;
+      }
+
+      .navbar .hamburger {
+        display: block;
+      }
+
+      .navbar.open ul {
+        display: flex;
+      }
+
+      .navbar ul li a {
+        font-size: 1.5rem;
+        font-weight: normal;
+      }
+    }
+
+    /* Mobile Menu Toggle */
+    .navbar.open .hamburger {
+      color: #ecf0f1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">Ezysend</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/send">Send Mail</a></li>
+      <li><a href="/how-it-works">How It Works</a></li>
+    </ul>
+  </div>
+
+  <!-- JavaScript for Mobile Navbar -->
+  <script>
+    function toggleMenu() {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('open');
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Minimalist Mail Sender</title>
+    <style>
+        /* Black and Light Black Gradient Background */
+
+        /* Header Styling */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: #ecf0f1;
+            /* Light gray text */
+            letter-spacing: 5px;
+            margin-bottom: 50px;
+            margin-top: 0%;
+            animation: fadeIn 3s ease-out;
+        }
+
+        /* Header Styling */
+        h3 {
+            text-align: center;
+            color: #ecf0f1;
+            /* Light gray text */
+
+        }
+
+        /* Header Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating Animated Shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .shape.circle {
+            width: 220px;
+            height: 220px;
+            top: 10%;
+            left: 15%;
+            animation-duration: 8s;
+            animation-delay: 2s;
+        }
+
+        .shape.circle2 {
+            width: 180px;
+            height: 180px;
+            bottom: 10%;
+            right: 20%;
+            animation-duration: 12s;
+            animation-delay: 4s;
+        }
+
+        .shape.square {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            top: 50%;
+            left: 70%;
+            animation: rotateAndFloat 12s infinite ease-in-out;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        /* Rotating and floating effect */
+        @keyframes rotateAndFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(45deg);
+            }
+        }
+
+        /* Content Container for Text and Button */
+        .content-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            margin-top: -80px;
+        }
+
+
+
+        /* Footer Section */
+        .footer {
+            position: absolute;
+            bottom: 5%;
+            width: 100%;
+            text-align: center;
+            color: #ecf0f1;
+            font-size: 0.9rem;
+        }
+
+        /* Particle Effect */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            animation: moveParticles 3s infinite;
+        }
+
+        @keyframes moveParticles {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(200px, 200px);
+                opacity: 0;
+            }
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+                margin-top: 40% !important;
+                /* Smaller header for smaller screens */
+                margin-bottom: 30px;
+            }
+
+            .button {
+                padding: 12px 24px;
+                font-size: 1rem;
+                /* Smaller button text */
+            }
+
+            .shape.circle {
+                width: 180px;
+                height: 180px;
+                top: 15%;
+                left: 10%;
+            }
+
+            .shape.circle2 {
+                width: 160px;
+                height: 160px;
+                bottom: 5%;
+                right: 10%;
+            }
+
+            .shape.square {
+                width: 100px;
+                height: 100px;
+                top: 40%;
+                left: 65%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+                /* Even smaller header */
+                margin-bottom: 20px;
+            }
+
+            .content-container {
+                margin-top: -40px;
+            }
+
+            .button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                /* Even smaller button text */
+            }
+
+            .shape.circle {
+                width: 150px;
+                height: 150px;
+                top: 20%;
+                left: 5%;
+            }
+
+            .shape.circle2 {
+                width: 140px;
+                height: 140px;
+                bottom: 0;
+                right: 5%;
+            }
+
+            .shape.square {
+                width: 90px;
+                height: 90px;
+                top: 35%;
+                left: 60%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .shape.circle {
+                width: 200px;
+                height: 200px;
+                top: 12%;
+                left: 12%;
+            }
+
+            .shape.circle2 {
+                width: 160px;
+                height: 160px;
+                bottom: 8%;
+                right: 15%;
+            }
+
+            .shape.square {
+                width: 110px;
+                height: 110px;
+                top: 45%;
+                left: 68%;
+            }
+
+            p {
+                font-size: 1.2rem;
+                padding: 0px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+                margin-top: -10%;
+            }
+
+            .shape.circle {
+                width: 180px;
+                height: 180px;
+                top: 15%;
+                left: 10%;
+            }
+
+            .shape.circle2 {
+                width: 150px;
+                height: 150px;
+                bottom: 6%;
+                right: 10%;
+            }
+
+            .shape.square {
+                width: 100px;
+                height: 100px;
+                top: 40%;
+                left: 65%;
+            }
+
+            p {
+                font-size: 1.1rem;
+                padding: 0px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+                margin-top: -5%;
+            }
+
+            .content-container {
+                margin-top: -40px;
+            }
+
+            .shape.circle {
+                width: 140px;
+                height: 140px;
+                top: 18%;
+                left: 5%;
+            }
+
+            .shape.circle2 {
+                width: 120px;
+                height: 120px;
+                bottom: 3%;
+                right: 5%;
+            }
+
+            .shape.square {
+                width: 80px;
+                height: 80px;
+                top: 35%;
+                left: 60%;
+            }
+
+            p {
+                font-size: 1rem;
+                padding: 0px 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .shape.circle {
+                width: 120px;
+                height: 120px;
+                top: 20%;
+                left: 3%;
+            }
+
+            .shape.circle2 {
+                width: 100px;
+                height: 100px;
+                bottom: 5%;
+                right: 3%;
+            }
+
+            .shape.square {
+                width: 70px;
+                height: 70px;
+                top: 30%;
+                left: 55%;
+            }
+
+            p {
+                font-size: 0.9rem;
+                padding: 0px 15px;
+            }
+        }
+
+        .frame {
+            text-align: center;
+            border: 2px solid #2196f3;
+            border-radius: 10px;
+            padding: 20px;
+            background: #f1f8ff;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .frame a {
+            display: block;
+            margin: 20px 0;
+            color: #2196f3;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body style="overflow-x: hidden;">
+
+    <!-- Floating Background Shapes -->
+    <div class="shape circle"></div>
+    <div class="shape circle2"></div>
+    <div class="shape square"></div>
+
+    <!-- Content Container -->
+    <div class="content-container">
+        <h1>About EzySend</h1>
+
+        <!-- Introduction and Call to Action -->
+        <p
+            style="font-size: 1.3rem; text-align:justify !important; margin-bottom: 10px; padding:0px 50px 0px 50px; line-height: 1.5;">
+            EzySend is your ultimate tool for effortless and efficient email management. It simplifies the task of
+            sending resumes, personalized messages, and subject lines to multiple recipients with a single click.
+            Whether you're switching jobs or looking to expand your professional network, EzySend is designed to save
+            time and reduce the hassle.
+            <br></br>
+            Today's fast-paced world demands tools that save time and effort. EzySend is for the modern professional who
+            needs to balance efficiency with productivity. Whether you're switching companies or applying to multiple
+            organizations, EzySend simplifies the process, leaving you more time to focus on what truly matters.
+        <p>
+
+        </p>
+        </p>
+
+
+        <h3>Why Use EzySend?</h3>
+        <p
+            style="font-size: 1.3rem;text-align:justify !important; margin-bottom: 10px; padding:0px 50px 0px 50px; line-height: 1.5;">
+            <b>Time-Saving: </b>Sending emails individually can be time-consuming, especially when targeting multiple
+            companies. EzySend eliminates repetitive tasks.
+            <br>
+            <b>Convenient for Job Seekers : </b> Got a list of company emails? Use EzySend to send applications to
+            multiple companies at once.
+            Ideal for individuals looking to save time and stay organized during job hunting.
+            <br> <b> Ease of Use:</b> Designed for today’s generation, which values efficiency and simplicity.
+        </p>
+
+        {{!-- <h3>How to Use </h3>
+        <table border="1" style="width:70%;margin-right:10%;margin-left:10%">
+            <tr>
+                <td>
+                    <div class="frame">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png"
+                            alt="YouTube Logo">
+                        <p>Watch our latest video on YouTube!</p>
+                        <a href="https://www.youtube.com/watch?v=example"
+                            target="_blank">https://www.youtube.com/watch?v=example</a>
+                    </div>
+                </td>
+                <td> TEXT</td>
+            </tr>
+        </table> --}}
+
+    </div>
+
+    <!-- Footer Text -->
+    <div class="footer">
+        <p>Designed by Akash Rupareliya &copy; 2024</p>
+    </div>
+
+    <!-- Particles Animation -->
+    <script>
+        // Generate Particles on Mouse Hover
+        document.body.addEventListener('mousemove', (e) => {
+            let particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.width = Math.random() * 8 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.top = e.clientY + 'px';
+            particle.style.left = e.clientX + 'px';
+            document.body.appendChild(particle);
+
+            // Remove particle after animation ends
+            setTimeout(() => {
+                particle.remove();
+            }, 3000);
+        });
+
+        // Button Click Redirect
+        function navigateToForm() {
+            window.location.href = '/form'; // Redirect to the form page
+        }
+    </script>
+</body>
+
+</html>

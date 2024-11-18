@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Minimalist Mail Sender</title>
+  <style>
+    /* Reset styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Black and Light Black Gradient Background */
+    .body1 {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1d1d1d, #444444);
+      /* Black and light black gradient */
+      position: relative;
+      color: #fff;
+      cursor: pointer;
+      flex-direction: column;
+    }
+
+    /* Header Styling */
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-align: center;
+      color: #ecf0f1;
+      /* Light gray text */
+      letter-spacing: 5px;
+      margin-bottom: 50px;
+      animation: fadeIn 3s ease-out;
+    }
+
+    /* Header Animation */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Floating Animated Shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 10s infinite ease-in-out;
+    }
+
+    .shape.circle {
+      width: 220px;
+      height: 220px;
+      top: 10%;
+      left: 15%;
+      animation-duration: 8s;
+      animation-delay: 2s;
+    }
+
+    .shape.circle2 {
+      width: 180px;
+      height: 180px;
+      bottom: 10%;
+      right: 20%;
+      animation-duration: 12s;
+      animation-delay: 4s;
+    }
+
+    .shape.square {
+      width: 120px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      top: 50%;
+      left: 70%;
+      animation: rotateAndFloat 12s infinite ease-in-out;
+    }
+
+    /* Floating animation */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-30px);
+      }
+    }
+
+    /* Rotating and floating effect */
+    @keyframes rotateAndFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-30px) rotate(45deg);
+      }
+    }
+
+    /* Content Container for Text and Button */
+    .content-container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      margin-top: -80px;
+    }
+
+    /* Main Button Style */
+    .button {
+      background: #2c2c2c;
+      /* Dark Blue Gray */
+      color: white;
+      padding: 14px 28px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      margin-top: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      /* Subtle shadow */
+    }
+
+    /* Button Hover Effect */
+    .button:hover {
+      background: #1d1d1d;
+      /* Slightly lighter gray */
+      transform: translateY(-5px);
+      /* Lift effect */
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      /* Stronger shadow */
+    }
+
+    /* Footer Section */
+    .footer {
+      position: absolute;
+      bottom: 5%;
+      width: 100%;
+      text-align: center;
+      color: #ecf0f1;
+      font-size: 0.9rem;
+    }
+
+    /* Particle Effect */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      pointer-events: none;
+      animation: moveParticles 3s infinite;
+    }
+
+    @keyframes moveParticles {
+      0% {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(200px, 200px);
+        opacity: 0;
+      }
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+        /* Smaller header for smaller screens */
+        margin-bottom: 30px;
+      }
+
+      .button {
+        padding: 12px 24px;
+        font-size: 1rem;
+        /* Smaller button text */
+      }
+
+      .shape.circle {
+        width: 180px;
+        height: 180px;
+        top: 15%;
+        left: 10%;
+      }
+
+      .shape.circle2 {
+        width: 160px;
+        height: 160px;
+        bottom: 5%;
+        right: 10%;
+      }
+
+      .shape.square {
+        width: 100px;
+        height: 100px;
+        top: 40%;
+        left: 65%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+        /* Even smaller header */
+        margin-bottom: 20px;
+      }
+
+      .content-container {
+        margin-top: -40px;
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        /* Even smaller button text */
+      }
+
+      .shape.circle {
+        width: 150px;
+        height: 150px;
+        top: 20%;
+        left: 5%;
+      }
+
+      .shape.circle2 {
+        width: 140px;
+        height: 140px;
+        bottom: 0;
+        right: 5%;
+      }
+
+      .shape.square {
+        width: 90px;
+        height: 90px;
+        top: 35%;
+        left: 60%;
+      }
+    }
+  </style>
+</head>
+
+<body class="body1" style="overflow-y: hidden;overflow-x: hidden;">
+  <!-- Floating Background Shapes -->
+  <div class="shape circle"></div>
+  <div class="shape circle2"></div>
+  <div class="shape square"></div>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <h1>Welcome to EzySend</h1>
+
+    <!-- Introduction and Call to Action -->
+    <p style="font-size: 1.3rem; margin-bottom: 40px;">A modern, simple way to send emails with attachments. Explore the
+      power of easy communication with a sleek interface.</p>
+    <!-- Call-to-Action Button -->
+    <div class="button" onclick="window.location.href = '/send';">Get Started</div>
+  </div>
+
+  <!-- Footer Text -->
+  <div class="footer">
+    <p>Designed by Akash Rupareliya &copy; 2024</p>
+  </div>
+
+  <!-- Particles Animation -->
+  <script>
+    // Generate Particles on Mouse Hover
+    document.body.addEventListener('mousemove', (e) => {
+      let particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.width = Math.random() * 8 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.top = e.clientY + 'px';
+      particle.style.left = e.clientX + 'px';
+      document.body.appendChild(particle);
+
+      // Remove particle after animation ends
+      setTimeout(() => {
+        particle.remove();
+      }, 3000);
+    });
+
+    // Button Click Redirect
+    function navigateToForm() {
+      window.location.href = '/form'; // Redirect to the form page
+    }
+  </script>
+</body>
+
+</html>

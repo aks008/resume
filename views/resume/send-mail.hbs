@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Mail Sender</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    /* Reset styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #111, #333);
+      overflow: auto;
+      /* Allow scrolling */
+      position: relative;
+      color: #fff;
+      margin: 0;
+    }
+
+    /* Full-page layout */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      /* Enable scrolling within container */
+      max-height: 100vh;
+      margin-top: 5%;
+      padding-bottom: 5% !important;
+      /* Limit max height to the viewport */
+    }
+
+    /* Left and Right sections */
+    .left-section,
+    .right-section {
+      flex: 1 1 50%;
+      min-width: 280px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 15px;
+      width: 100%;
+    }
+
+    /* Input fields styling */
+    .input-field {
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .input-field label {
+      font-weight: bold;
+      color: #bbb;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .input-field input[type="text"],
+    .input-field input[type="file"],
+    .input-field textarea {
+      width: 100%;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .input-field input::placeholder,
+    .input-field textarea::placeholder {
+      color: #888;
+    }
+
+    /* Button styling */
+    .button {
+      text-align: center;
+      background: #222;
+      color: white;
+      padding: 16px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 90%;
+    }
+
+    .button:hover {
+      background: #444;
+      transform: scale(1.05);
+    }
+
+    /* Loader Styles */
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 20;
+    }
+
+    .loader {
+      border: 8px solid rgba(255, 255, 255, 0.3);
+      border-top: 8px solid #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 20px;
+      }
+
+      .left-section,
+      .right-section {
+        flex: 1 1 100%;
+        /* Stack sections on medium screens */
+        min-width: 100%;
+        padding: 15px;
+      }
+
+      .title {
+        font-size: 2rem;
+      }
+
+      .input-field input,
+      .input-field textarea {
+        font-size: 0.9rem;
+      }
+
+      .button {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .left-section,
+      .right-section {
+        min-width: 100%;
+        padding: 10px;
+      }
+
+      .title {
+        font-size: 1.8rem;
+      }
+
+      .input-field input,
+      .input-field textarea {
+        font-size: 0.85rem;
+      }
+
+      .button {
+        font-size: 0.9rem;
+        padding: 12px;
+      }
+    }
+
+    /* Animated shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 10s infinite ease-in-out;
+    }
+
+    .shape.circle {
+      width: 280px;
+      height: 280px;
+      top: 10%;
+      left: 15%;
+      animation-duration: 3s;
+      animation-delay: 2s;
+    }
+
+    .shape.circle2 {
+      width: 120px;
+      height: 120px;
+      bottom: 10%;
+      right: 20%;
+      animation-duration: 12s;
+      animation-delay: 4s;
+    }
+
+    .shape.square {
+      width: 120px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      top: 50%;
+      left: 70%;
+      animation: rotateAndFloat 10s infinite ease-in-out;
+    }
+
+    /* Floating animation */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Rotating and floating */
+    @keyframes rotateAndFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(45deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loader-container" id="loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Animated shapes in the background -->
+  <div class="shape circle"></div>
+  <div class="shape circle2"></div>
+  <div class="shape square"></div>
+
+  <!-- Form container -->
+  <div class="container">
+    <!-- Left Section -->
+    <div class="left-section">
+      <div class="input-field">
+        <label for="senderName">Sender Name:</label>
+        <input type="text" id="senderName" placeholder="Enter your name">
+      </div>
+      <div class="input-field">
+        <label for="subject">Mail Subject:</label>
+        <input type="text" id="subject" placeholder="Enter the subject">
+      </div>
+      <div class="input-field">
+        <label for="mailText">Mail Text:</label>
+        <textarea id="mailText" rows="5" placeholder="Write your message here"></textarea>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+      <div class="input-field">
+        <label for="emailList">List of Company Emails (comma-separated):</label>
+        <input type="text" id="emailList" placeholder="Enter emails separated by ','">
+      </div>
+      <div class="input-field">
+        <label for="resumeUpload">Upload Resume : (Only PDF)</label>
+        <input type="file" id="resumeUpload">
+      </div>
+      <div class="input-field">
+        <label for="googleAuthToken">Email :</label>
+        <input type="text" id="googleAuthToken" placeholder="Enter Google Auth Token">
+      </div>
+      <div class="input-field">
+        <label for="authToken">App Password:</label>
+        <input type="text" id="authToken" placeholder="Enter Auth Token">
+      </div>
+    </div>
+    <!-- Send Button -->
+    <div class="button" onclick="sendMail()">SEND</div>
+  </div>
+
+  <script>
+    function toggleLoader(show) {
+      const loader = document.getElementById('loader');
+      loader.style.display = show ? 'flex' : 'none';
+    }
+
+    async function sendMail() {
+      const senderName = document.getElementById('senderName').value;
+      const subject = document.getElementById('subject').value;
+      const mailText = document.getElementById('mailText').value;
+      const emailList = document.getElementById('emailList').value;
+      const resumeFile = document.getElementById('resumeUpload').files[0];
+      const googleAuthToken = document.getElementById('googleAuthToken').value;
+      const authToken = document.getElementById('authToken').value;
+
+      if (!senderName || !subject || !mailText || !emailList || !resumeFile || !googleAuthToken || !authToken) {
+        alert("Please fill in all fields and upload a resume.");
+        return;
+      }
+
+      try {
+        toggleLoader(true); // Show loader
+        const formData = new FormData();
+        formData.append('senderName', senderName);
+        formData.append('subject', subject);
+        formData.append('mailText', mailText);
+        formData.append('emailList', emailList);
+        formData.append('attachments', resumeFile);
+        formData.append('googleAuthToken', googleAuthToken);
+        formData.append('authToken', authToken);
+
+        // Mock API request (change with actual endpoint)
+        setTimeout(() => {
+          alert('Mail Sent Successfully!');
+          toggleLoader(false); // Hide loader
+        }, 2000);
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+        toggleLoader(false); // Hide loader
+      }
+    }
+  </script>
+
+</body>
+
+</html>
