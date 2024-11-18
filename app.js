@@ -10,7 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sendResumeRouter = require('./routes/sendResume');
 var app = express();
-
+app.use(express.static(path.join(__dirname, 'public')));
 // View engine setup
 app.engine('hbs', engine({  // Use 'engine' from express-handlebars
   extname: 'hbs',           // File extension for templates
@@ -51,4 +51,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-  
